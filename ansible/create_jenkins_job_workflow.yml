@@ -1,7 +1,0 @@
-- name: Create Jenkins Jobs
-  hosts: localhost
-  gather_facts: no
-  roles:
-    - Audit360_ECS_ANG_UI
-
-  

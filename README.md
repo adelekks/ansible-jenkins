@@ -12,4 +12,4 @@ sh make_folder_structure.sh
 
 4) Run the below command to create the Jobs 
 ansible-playbook create_jenkins_job_workflow.yml
-ansible-playbook ecs-migrate.yml --extra-vars "@app-template/grc-gov"
+ansible-playbook ecs-migrate.yml --extra-vars "@app-template/app_name"

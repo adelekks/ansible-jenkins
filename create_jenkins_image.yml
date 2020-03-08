@@ -1,0 +1,9 @@
+---
+- name: Create Jenkins Image
+  hosts: localhost
+  gather_facts: no
+#  remote_user: remote_username
+  become: yes
+  become_method: sudo
+  roles:
+    - jenkins-image
