@@ -1,0 +1,78 @@
+<html>
+      <!-- Header section -->
+       <head><title>Warning: Access Denied</title><meta name="description" content="Access Denied"></head>
+       <blockquote><body bgcolor="white"><center>
+      <!-- End Header section -->
+
+      <!-- Exception Banner -->
+        <script type="text/javascript"">
+        var StatusCode = 403;
+      if ((StatusCode>=300 && StatusCode<=400) || (StatusCode==404) || (StatusCode>=407 && StatusCode<=410) || (StatusCode==412) || (StatusCode==416) || (StatusCode==417) || (StatusCode>=500 && StatusCode<=504) || (StatusCode>=506 && StatusCode<=599))
+          {
+          document.write("<img width=\"100%\" src=\"http://proxypac.nam.nsroot.net/data/Exception_AccessFailed.jpg\"/>");
+          }
+         else if ((StatusCode==401) || (StatusCode==403) || (StatusCode==405) || (StatusCode==406) || (StatusCode==411) || (StatusCode>=413 && StatusCode<=415) || (StatusCode==505))
+          {
+          document.write("<img width=\"100%\" src=\"http://proxypac.nam.nsroot.net/data/Exception_AccessDenied.jpg\"/>");
+          }
+         else
+          {
+          document.write("<img width=\"100%\" src=\"http://proxypac.nam.nsroot.net/data/Exception_Error.jpg\"/>");
+          }
+      </script>
+      <!-- End Exception Banner -->
+
+      <!--Section 1 - What has been blocked -->
+       <h3><br><font face="Helvetica" color="red">
+        <script type="text/javascript"">
+        var StatusCode = 403;
+         if ((StatusCode==401) || (StatusCode==403) || (StatusCode>=405 && StatusCode<=406) || (StatusCode==411) || (StatusCode>=413 && StatusCode<=415) || (StatusCode==505))
+         {
+          document.write("YOUR ATTEMPT TO ACCESS FOLLOWING WEBSITE HAS BEEN DENIED:");
+         }
+         else if (StatusCode==305)
+         {
+          document.write("Your attempt to access the following website has been blocked as it has not been accessed by Citi before and has an unknown threat profile.");
+         }
+         else
+         {
+          document.write("YOUR ATTEMPT TO ACCESS FOLLOWING WEBSITE HAS FAILED:");
+         }
+        </script>
+        </font><br><font face="Helvetica" color="black">&nbsphttp://https///ka73655:110162132c32c2c2e2dd517a436e3b291a@ebjenkins11.nam.nsroot.net/job/GFTS/job/170607/job/Audit-360/job/Audit360_ECS_ANG_UI/config.xml</font><br><br>
+        <font face="Helvetica" color="blue" size="4">Your system policy has denied access to the requested URL.</font>
+       </h3>
+       <!-- End Section 1 -->
+
+       <!-- Section 2 - Associated Information -->
+        <p><table style="border:solid lightblue;" bgcolor="#F8FFFF"><font face="Helvetica" color="black"><i><TR>
+         <TD>URL in question is categorized as:</TD><TD>none</TD><TR>
+         <TD>Exception that triggered the event:</TD><TD>policy_denied</TD><TR>
+         <TD>Your IP address has been recorded as:</TD><TD>10.119.101.204</TD><TR>
+         <TD>Your user ID has been recorded as:</TD><TD>/</TD><TR>
+         <TD>Proxy used for this connection:</TD><TD>wusswdc-cxc04-s400:9999</TD>
+        </font></table></p>
+       <!-- End Section 2 -->
+
+       <!-- Section 3 - Where to find references -->
+        <br><font face="Helvetica" color="black">        <p><font face="Helvetica" color="black">
+         If access to this website is for business purpose, please refer to the  <a  href="https://globalconsumer.collaborationtools.consumer.citigroup.net/sites/GSO/PSFRI/PSPI/Shared%20Documents/Global%20Documents/Proxy%20QRC%20(linked%20on%20exception%20pages%20globally)/Proxy_QRC.docx"> Proxy QRC</a> document.<br>
+         For further information on Internet use, please refer to the <a  href="http://www.citigroup.com/citi/investor/corporate_governance.html"> Code of Conduct Documents.</a>
+        </font></p>
+        </font>
+       <!-- End Section 3 -->
+
+       <!-- Section 4 - Who to contact for support -->
+        <br><font face="Helvetica" color="black">        <font face="Helvetica" size="2">For further assistance, submit a request via <a href="https://servicemanagement.citigroup.net/navpage.do">ServiceNow</a>, assigned to <strong>CTI GL 1T SECOPS TRIAGE AND DISPATCH</strong> queue.<br>
+        Please provide a detailed description of the issue. Follow up with <a href="mailto:*CTI GLOBAL SecOps Triage and Dispatch">Triage and Dispatch team</a>, including reference to a ServiceNow incident record in the subject line.</font>
+        </font>
+       <!-- End Section 4 -->
+
+       <!-- Footer section -->
+        <br><HR><p align=center>
+        <img src="http://proxypac.nam.nsroot.net/data/CitiLogo.gif"><br>
+        <font face="Helvetica" color="grey" size=1>Citigroup Terms and Conditions.</font></p>
+       <!-- End Footer section -->
+
+       </blockquote></body></html>
+      

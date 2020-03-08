@@ -1,0 +1,22 @@
+FROM docker-enterprise-prod.artifactrepository.citigroup.net/cate-citicloud-tomcat/tomcat-rhel7:8.0.18_9
+USER root
+LABEL vendor=Citigroup \
+citi.is-middleware-image=1 \
+citi.csi-id=170607 \
+citi.installed-product-versions="rhel7 | rhel7-tomcat:8.0.18_4" \
+citi.image-maintainer="Kenny Adeleke"
+RUN sed -i "s/TLSv1\,//g" /opt/jre/latest/lib/security/java.security
+# Creating a new user for {{ app_user }} 
+RUN adduser {{ app_user }}
+# Uninstall Tomcat
+#RUN rm -rf /opt/middleware
+# Creating the /opt/{{ app }}  folder and assigning it to {{ app_user }} user
+RUN mkdir -p /opt/{{ app }}
+# Copy {{ app }}  files create in Jenkins and expanding it
+COPY ./{{ jar_name }} /opt/{{ app }}
+# Changing permission for the {{ app_user }} user
+RUN chown -R {{ app_user }} /opt/{{ app }}
+# Changing user and assigning working directory
+USER {{ app_user }}
+WORKDIR /opt/{{ app }}
+CMD ["java", "-jar", "-DENV=LOCAL", "{{ jar_name }}"]

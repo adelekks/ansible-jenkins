@@ -1,0 +1,3 @@
+---
+# tasks file for create Jenkins Image
+- include: create-jenkins-image.yml 

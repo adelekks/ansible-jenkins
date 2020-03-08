@@ -1,0 +1,4 @@
+jenkins_url: "localhost:8080"
+user_name: 'admin'
+password: 'admin'
+#password: '11b5494009cc02e4f20c63d34c1052d306'

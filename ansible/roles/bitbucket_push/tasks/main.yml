@@ -1,0 +1,3 @@
+---
+# tasks file for nexus
+- include: bitbucket_push.yml 

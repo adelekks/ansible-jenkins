@@ -1,0 +1,81 @@
+- name: git install 
+  yum:
+     name: git 
+     state: present
+
+- set_fact:
+    base_path_app: "./roles/{{ app }}-repo/{{ repo_name }}"
+
+- name: Check if app directory exists.
+  stat:
+    path: "{{ base_path_app }}"
+  register: check_dr
+
+- name: Clone App Repo {{ repo_name }}
+  git: 
+    repo: "{{ repo_url }}"
+    dest: "{{ base_path_app }}"
+    key_file: /home/{{ github_username }}/.ssh/id_rsa
+  become: yes
+  become_user: "{{ github_username }}"
+  register: clone
+#  when: not check_dr.stat.exists
+- debug:
+    var: clone
+
+- name: Create a new feature branch {{ github_branch }} in the repository
+  shell: |
+     cd {{ base_path_app }}
+     ls -l
+     git branch {{ github_branch }}
+     git checkout {{ github_branch }}
+  register: branch
+- debug:
+    var: branch
+
+- set_fact:
+    base_path_app_docker: "{{ base_path_app }}/docker/{{ app }}"
+
+- name: Create app directory
+  file:
+   path: "{{ base_path_app_docker }}"
+   state: directory
+  register: app_dir
+- debug:
+    var: app_dir
+
+- name: Create .SIT file
+  template: 
+    src: cto-gfts-citi-risk-n-controls-170607_svc.dat.SIT.j2
+    dest: "{{ base_path_app_docker }}/cto-gfts-citi-risk-n-controls-170607_{{ repo_name }}-svc.dat.SIT"
+  register: sit_file
+- debug:
+    var: sit_file
+
+- name: Create .JSON file
+  template:
+    src: cto-gfts-citi-risk-n-controls-170607_svc.json.j2
+    dest: "{{ base_path_app_docker }}/cto-gfts-citi-risk-n-controls-170607_{{ repo_name }}-svc.json"
+  register: json_file
+- debug:
+    var: json_file
+
+- name: Create Dockerfile
+  template:
+    src: Dockerfile.j2
+    dest: "{{ base_path_app_docker }}/Dockerfile"
+  register: docker_file
+- debug:
+    var: docker_file
+
+- name: git commit and push 
+  shell: |
+      cd {{ base_path_app }}
+      ls -l
+      git add .  
+      git commit -m "Adding {{ app }} repo" 
+      git checkout master   
+      git push origin {{ github_branch }}
+  register: push
+- debug: 
+    var: push

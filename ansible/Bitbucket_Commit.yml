@@ -1,0 +1,7 @@
+#!/usr/bin/env ansible-playbook
+# vim:ft=ansible:
+- name: Create Jenkins Jobs
+  hosts: localhost
+  gather_facts: no
+  roles:
+    - bitbucket_push

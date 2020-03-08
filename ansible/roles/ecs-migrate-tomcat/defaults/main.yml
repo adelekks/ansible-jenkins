@@ -1,0 +1,48 @@
+---
+# defaults file for createJenkinsJob
+job_name: "{{ app }}"
+JOB_URL: /job/MasterAndSlaves/job/EB/job/INST/job/TopLevel/job/CTO/job/Main/job/Sub/job/Master_CJE_CTO/job/GFTS/job/170607/job/{{ folder_name }}
+config_file_name: Audit360_ECS_ANG_UI_config.xml
+JOB_DESCRIPTION: Project used to build the {{ app }} Angular UI application
+BUILDCMD: mvn -s ./setting.xm -Djavax.net.ssl.trustStore=/xenv/scripts/bin/THOR/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Dm
+EAR: Y
+EAR_DESC: Push docker image to Enterprise Artifactory Repository?
+JAVA_REL: 1.8.0_121164
+BUILDTYPE: PROD
+
+
+APPID: "170607"
+DOCKER_IMAGENAME_DESC: Name to assign to docker image
+DOCKER_IMAGENAME: "{{ image_name }}-svc"
+DOCKER_TAG_DESC: Tag value (aka, version) to assign to the Docker image
+DOCKER_TAG: "1.0"
+GIT_URI: "{{ repo_url }}"
+GIT_BRANCH: "*/{{ github_branch }}"
+ASSIGNED_NODE: EB_RH6
+
+
+EXECUTE_SHELL_1: "# Copying Dockerfile, .dat.&lt;ENV&gt; and .json file for {{ app }} microservice to docker folder\n
+#which will be used for building the Docker image for iaanalytics.war deploy it to the ECS cluster\n
+cd ${WORKSPACE}/docker\n
+
+# Copy iaanalytics files to the root docker folder\n
+cp {{ app }}/* .\n
+ls -l"
+
+EXECUTE_SHELL_2: "DAT_SIT_FILE=cto_gfts-citi-risk-n-controls-170607_{{ repo_name }}-svc.dat.SIT\n\n
+
+cd ${WORKSPACE}\n\n
+
+# Extract the Docker image name and tag number from &quot;/docker/cto-gfts-risk-n-controls-170607_{{ repo_name }}.dat.SIT&quot;\n\n
+OLD_DOCKER_IMAGE=$(cat docker/$DAT_SIT_FILE | grep IMAGE_ADMIN | awk -f &quot;docker-cto-int-local.artifactory.citigroup.net/gft&quot;)\n\n
+echo &quot;***** Ole Docker image and tag name is &quot; $OLD_DOCKER_IMAGE\n\n
+
+#Building new Docker image name tag number from the parameters for this job\n
+NEW_DOCKER_IMAGE=$DOCKER_IMAGE_NAME:$DOCKER_TAG\n
+echo &quot;***** New Docker image and tag name is &quot; $NEW_DOCKER_IMAGE\n\n
+
+#Replace the extratect docker image name and tag number with new image name and tag in &quot;/docker/cto-gfts-risk-n-controls-170607_{{ repo_name }}&quot;\n
+sed -i &apos;s/&apos;&quot;$OLD_DOCKER_IMAGE&quot;&apos;/&apos;&quot;$NEW_DOCKER_IMAGE&quot;&apos;/&apos; docker/$DAT_SIT_FILE\n\n
+
+# Uncomment the following line for troubleshooting\n
+#cat docker/$DAT_SIT_FILE"
